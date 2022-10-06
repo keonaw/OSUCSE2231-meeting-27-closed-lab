@@ -1,3 +1,7 @@
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
+
 import components.stack.Stack;
 
 /**
@@ -65,6 +69,91 @@ public abstract class StackTest {
         return stack;
     }
 
-    // TODO - add test cases for constructor, push, pop, and length
+    @Test
+    public void constructorTestBlank() {
+        Stack<String> x = this.createFromArgsTest("");
+        Stack<String> xExpected = this.createFromArgsTest("");
+
+        assertEquals(xExpected, x);
+    }
+
+    @Test
+    public void constructorTestWithElements() {
+        Stack<String> x = this.createFromArgsTest("red", "orange", "yellow");
+        Stack<String> xExpected = this.createFromArgsTest("red", "orange",
+                "yellow");
+
+        assertEquals(xExpected, x);
+    }
+
+    @Test
+    public void pushTestIntoEmpty() {
+        Stack<String> x = this.createFromArgsTest("");
+        Stack<String> xExpected = this.createFromArgsTest("");
+
+        x.push("red");
+        xExpected.push("red");
+
+        assertEquals(xExpected, x);
+    }
+
+    @Test
+    public void pushTestIntoNonEmpty() {
+        Stack<String> x = this.createFromArgsTest("red");
+        Stack<String> xExpected = this.createFromArgsTest("red");
+
+        x.push("orange");
+        xExpected.push("orange");
+
+        assertEquals(xExpected, x);
+    }
+
+    @Test
+    public void popTestToEmpty() {
+        Stack<String> x = this.createFromArgsTest("red");
+        Stack<String> xExpected = this.createFromArgsTest("red");
+
+        String xElement = x.pop();
+        String xExpectedElement = xExpected.pop();
+
+        assertEquals(xExpected, x);
+        assertEquals(xExpectedElement, xElement);
+    }
+
+    @Test
+    public void popTestToNonEmpty() {
+        Stack<String> x = this.createFromArgsTest("red", "orange");
+        Stack<String> xExpected = this.createFromArgsTest("red", "orange");
+
+        String xElement = x.pop();
+        String xExpectedElement = xExpected.pop();
+
+        assertEquals(xExpected, x);
+        assertEquals(xExpectedElement, xElement);
+    }
+
+    @Test
+    public void lengthTestEmpty() {
+        Stack<String> x = this.createFromArgsTest("");
+        Stack<String> xExpected = this.createFromArgsTest("");
+
+        int xLen = x.length();
+        int xExpectedLen = xExpected.length();
+
+        assertEquals(xExpected, x);
+        assertEquals(xExpectedLen, xLen);
+    }
+
+    @Test
+    public void lengthTestNonEmpty() {
+        Stack<String> x = this.createFromArgsTest("red");
+        Stack<String> xExpected = this.createFromArgsTest("red");
+
+        int xLen = x.length();
+        int xExpectedLen = xExpected.length();
+
+        assertEquals(xExpected, x);
+        assertEquals(xExpectedLen, xLen);
+    }
 
 }
