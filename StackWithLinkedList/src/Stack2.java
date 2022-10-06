@@ -173,12 +173,13 @@ public class Stack2<T> extends StackSecondary<T> {
         Node toPush = new Node();
         toPush.data = x;
         if (this.length > 0) {
-            Node toShift = this.top.next;
-            toPush.next = toShift;
+            toPush.next = this.top;
+            this.top = toPush;
+        } else {
+            toPush.next = null;
+            this.top = toPush;
         }
-        this.top.next = toPush;
         this.length++;
-
         assert this.conventionHolds();
     }
 
