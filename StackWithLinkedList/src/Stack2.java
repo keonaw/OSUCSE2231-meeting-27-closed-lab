@@ -187,24 +187,26 @@ public class Stack2<T> extends StackSecondary<T> {
     public final T pop() {
         assert this.length() > 0 : "Violation of: this /= <>";
 
-        Node popped = this.top;
-        T result = popped.data;
-        this.top = popped.next;
+        Node toPop = this.top.next;
+        T popValue = toPop.data;
+        if (this.length > 1) {
+            Node toShift = toPop;
+            toShift = toPop.next;
+            this.top.next = toShift;
+        } else if (this.length == 1) {
+            this.top.next = null;
+        }
         this.length--;
 
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return result;
+        return popValue;
     }
 
     @Override
     public final int length() {
 
-        // TODO - fill in body
-
         assert this.conventionHolds();
-        // Fix this line to return the result after checking the convention.
-        return 0;
+        return this.length;
     }
 
     @Override
