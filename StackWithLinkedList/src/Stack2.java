@@ -170,10 +170,13 @@ public class Stack2<T> extends StackSecondary<T> {
     public final void push(T x) {
         assert x != null : "Violation of: x is not null";
 
-        Node pushed = new Node();
-        pushed.data = x;
-        pushed.next = null;
-        this.top = pushed;
+        Node toPush = new Node();
+        toPush.data = x;
+        if (this.length > 0) {
+            Node toShift = this.top.next;
+            toPush.next = toShift;
+        }
+        this.top.next = toPush;
         this.length++;
 
         assert this.conventionHolds();
